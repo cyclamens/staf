@@ -1,23 +1,26 @@
-h1, h3
+body
+{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+footer
+{
+    height: auto;
+    width: 100%;
+    background: #34495e;
+    padding: 10px;
+    margin-top: 10px;
+    color: #fff;
+}
+h1,  h3
 {
     text-align:center;
 }
-h3
+p
 {
-    background-color:black;
-    color:white;
-    font-size:0.9em;
-    margin-bottom:0px;
-}
-.news p
-{
-    background-color:#CCCCCC;
-    margin-top:0px;
-}
-.news
-{
-    width:70%;
-    margin:auto;
+    text-align: center;
+    font-size: 18px;
 }
 
 a
@@ -25,3 +28,180 @@ a
     text-decoration: none;
     color: blue;
 }
+
+.banner
+{
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+.banner img
+{
+    width: 100%;
+}
+.heading
+{
+    color: #EB0425;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    text-shadow: 15px 15px 30px #6281B3;
+}
+.banner a
+{
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    width: 20%;
+    text-align: center;
+    background: #B7C2C2;
+    border: 2px solid #B7C2C2;
+    border-radius: 50px;
+    color: blue;
+    opacity: 0.8;
+    margin-left: ;
+    margin-right: ;
+}
+
+#header
+{
+    height: 100px;
+    width: 100%;
+    background: #34495e;
+    padding: 0 20px;
+    color: #fff;
+}
+#logo
+{
+    line-height: 50px;
+    float: left;
+    text-transform: uppercase;
+}
+#menu
+{
+    float: right;
+    line-height: 100px;
+}
+#menu a
+{
+    color: #fff;
+    text-transform: uppercase;
+    padding: 0 10px;
+    transition: 0.4s;
+}
+
+
+#show-menu-btn, #hide-menu-btn
+{
+    transition: 0.4s;
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+}
+#show-menu-btn
+{
+    float: right;
+}
+#show-menu-btn i
+{
+    line-height: 100px;
+}
+
+#menu a:hover,
+#show-menu-btn:hover,
+#hide-menu-btn:hover
+{
+    color: #3498db;
+
+}
+
+#chk
+{
+    position: absolute;
+    visibility: hidden;
+    z-index: -1111;
+}
+
+#inscription
+{
+    width: 100%;
+    height: 73vh;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 800px)
+{
+    #show-menu-btn, #hide-menu-btn
+    {
+        display: block;
+    }
+    #logo
+    {
+        text-align: center;
+    }
+    #header
+    {
+        width: 100%;
+        height: 200px;
+    }
+    #menu
+    {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #333;
+        right: -100%;
+        top: 0px;
+        text-align: center;
+        padding: 80px 0px;
+        line-height: normal;
+        transition: 0.7s;
+    }
+
+    #menu a
+    {
+        display: block;
+        padding: 20px;
+    }
+
+    #hide-menu-btn
+    {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+    }
+
+    #chk:checked ~ #menu
+    {
+        right: 0px;
+    }
+
+    .heading
+    {
+        display: none;
+    }
+
+    .banner a
+{
+    font-size: 20px;
+    position: absolute;
+    top: 40%;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    
+}
+
+}
+
+
+

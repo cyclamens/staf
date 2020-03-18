@@ -3,7 +3,18 @@
 // Chargement des classes
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
+require_once('model/inscriptionManager.php');
+function inscription()
+{
+    $inscriptionOk = new InscriptionManager();
+    $ReqInscription = $inscriptionOk->Inscription();
 
+
+    
+    require('view/frontend/inscription.php');
+}
+
+/*
 function listPosts()
 {
     $postManager = new PostManager(); // Création d'un objet
@@ -25,7 +36,7 @@ function post()
 
 function addComment($postId, $author, $comment)
 {
-    $commentManager = new CommentManager();
+    $commentManager = new CommentManager(); // Création d'un objet
 
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
 
@@ -35,4 +46,9 @@ function addComment($postId, $author, $comment)
     else {
         header('Location: index.php?action=post&id=' . $postId);
     }
+}
+*/
+function home()
+{
+    require('view/frontend/accueil.php');
 }

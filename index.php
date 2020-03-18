@@ -3,7 +3,13 @@ require('controller/frontend.php');
 
 try { // On essaie de faire des choses
     if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'listPosts') {
+        if ($_GET['action'] == 'inscription') {
+            
+            inscription();
+        }
+
+
+        elseif ($_GET['action'] == 'listPosts') {
             listPosts();
         }
         elseif ($_GET['action'] == 'post') {
@@ -25,14 +31,16 @@ try { // On essaie de faire des choses
                     throw new Exception('Tous les champs ne sont pas remplis !');
                 }
             }
+        
             else {
                 // Autre exception
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
+
         }
     }
     else {
-        listPosts();
+        home();
     }
 }
 catch(Exception $e) { // S'il y a eu une erreur, alors...
