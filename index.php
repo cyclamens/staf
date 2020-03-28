@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('controller/frontend.php');
 
 try { // On essaie de faire des choses
@@ -7,8 +8,12 @@ try { // On essaie de faire des choses
             
             inscription();
         }
-
-
+        elseif ($_GET['action'] == 'connexion') {
+            login();
+        }
+        elseif($_GET['action'] == 'deconnexion'){
+            deconnect();
+        }
         elseif ($_GET['action'] == 'listPosts') {
             listPosts();
         }
@@ -44,5 +49,8 @@ try { // On essaie de faire des choses
     }
 }
 catch(Exception $e) { // S'il y a eu une erreur, alors...
-    echo 'Erreur : ' . $e->getMessage();
+    
+    $messages = $e->getMessage();
+    echo "<div style=\"font-family:Helvetica, Arial, sans-serif; font-size:20px; text-align:center; font-weight:bold; background-color: #B3C6C7; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50%; color:red\">".$messages."</div>";
+
 }
