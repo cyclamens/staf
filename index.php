@@ -14,11 +14,14 @@ try { // On essaie de faire des choses
         elseif($_GET['action'] == 'deconnexion'){
             deconnect();
         }
+        elseif ($_GET['action'] == 'redaction') {
+            redaction();
+        }
         elseif ($_GET['action'] == 'listPosts') {
             listPosts();
         }
-        elseif ($_GET['action'] == 'post') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
+        elseif ($_GET['action'] == 'chapitre') {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 5) {
                 post();
             }
             else {
@@ -26,10 +29,11 @@ try { // On essaie de faire des choses
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        elseif ($_GET['action'] == 'addComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+
+        /*elseif ($_GET['action'] == 'addComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 5) {
+                if (!empty($_POST['comment'])) {
+                    addComment($_GET['id'], $_SESSION['pseudoconnect'], $_POST['comment']);
                 }
                 else {
                     // Autre exception
@@ -42,7 +46,7 @@ try { // On essaie de faire des choses
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
 
-        }
+        }*/
     }
     else {
         home();

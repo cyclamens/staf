@@ -5,6 +5,7 @@ require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/inscriptionManager.php');
 require_once('model/connexionManager.php');
+require_once('model/editpostManager.php');
 function inscription()
 {
     $inscriptionOk = new InscriptionManager();
@@ -73,7 +74,7 @@ function login()
                     $_SESSION['pseudoconnect'] = $userinfo['pseudo'];
                     $_SESSION['idconnect'] = $userinfo['user_id'];
                     $_SESSION['adminconnect'] = $userinfo['admin'];
-                    header("Location:index.php");
+                    header("Location:index.php?action=listPosts");
                 }else{
                     throw new Exception("Mauvais mot de pass");  
                 }
@@ -98,7 +99,29 @@ function deconnect()
     header("Location: index.php?action=connexion");
 }
 
-/*
+function redaction()
+{
+    $redactionOk = new EditPostManager();
+    if(isset($_POST['article_title'], $_POST['article_content'])) {
+        if(!empty($_POST['article_title']) AND !empty($_POST['article_content'])) {
+      
+            $article_title = htmlspecialchars($_POST['article_title']);
+            $article_content = htmlspecialchars($_POST['article_content']);
+            $editOk = $redactionOk->edit($article_title, $article_content);
+            if ($editOk) {
+                throw new Exception("Votre article a bien été posté");  
+            }else{
+                throw new Exception("Article non posté"); 
+            }
+      
+        } else {
+            throw new Exception("Veuillez remplir tous les champs");
+        }
+    }
+
+    require('view/frontend/editpost.php');
+}
+
 function listPosts()
 {
     $postManager = new PostManager(); // Création d'un objet
@@ -117,18 +140,21 @@ function post()
 
     require('view/frontend/postView.php');
 }
-
+/*
 function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager(); // Création d'un objet
 
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
+    $affectedLines = $commentManager->postComment($_GET['id'], $_SESSION['pseudoconnect'], $comment);
+    var_dump($_GET['id']);
+    var_dump($_SESSION['pseudoconnect']);
+    var_dump($comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id=' . $postId);
+        header('Location: index.php?action=chapitre&id=' . $_GET['id']);
     }
 }
 */

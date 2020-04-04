@@ -7,7 +7,7 @@
 <div class="banner">
 	<img src="public/image/ordi.jpg" alt="Bureau avec ordinateur">
 	<h2 class="heading">BILLET SIMPLE POUR L'ALASKA</h2>
-	<a href="#">Voir les chapitres</a>
+	<a href="index.php?action=listPosts">Voir les chapitres</a>
 </div>
 
 <?php $content = ob_get_clean(); ?>

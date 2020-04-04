@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
         <title><?= $title ?></title>
-        <link rel="stylesheet" href="public/css/style.css" /> 
+        <link rel="stylesheet" href="public/css/style" /> 
         <!--responsive meta tag-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<meta name="description" content="">
@@ -18,6 +17,12 @@
 		<!--Bootstrap js compilé-->
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/8692d3a619.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.tiny.cloud/1/jtoheklq5t6f90kwzh7wixgxawh8tno3w15xlqtdfgtpcthb/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+        </script>
     </head>
         
     <body>

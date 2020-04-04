@@ -1,25 +1,26 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Les chapitres'; ?>
 
 <?php ob_start(); ?>
-<h1>Mon super blog !</h1>
-<p>Derniers billets du blog :</p>
 
 
 <?php
 while ($data = $posts->fetch())
 {
 ?>
-    <div class="news">
-        <h3>
+    <div id="news">
+        <h2>
             <?= htmlspecialchars($data['title']) ?>
             <em>le <?= $data['creation_date_fr'] ?></em>
-        </h3>
+        </h2>
         
         <p>
             <?= nl2br(htmlspecialchars($data['content'])) ?>
             <br />
-            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>" class="btn btn-primary">Commentaires</a></em>
+            <a href="index.php?action=chapitre&amp;id=<?= $data['post_id'] ?>" class="btn btn-primary"><em>Commentaires</em></a>
+
         </p>
+
+       
     </div>
 <?php
 }
