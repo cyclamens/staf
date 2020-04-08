@@ -140,16 +140,13 @@ function post()
 
     require('view/frontend/postView.php');
 }
-/*
+
 function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager(); // Création d'un objet
 
-    $affectedLines = $commentManager->postComment($_GET['id'], $_SESSION['pseudoconnect'], $comment);
-    var_dump($_GET['id']);
-    var_dump($_SESSION['pseudoconnect']);
-    var_dump($comment);
-
+    $affectedLines = $commentManager->postComment($_GET['id'], $_SESSION['idconnect'], $comment);
+    
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
@@ -157,7 +154,7 @@ function addComment($postId, $author, $comment)
         header('Location: index.php?action=chapitre&id=' . $_GET['id']);
     }
 }
-*/
+
 function home()
 {
     require('view/frontend/accueil.php');

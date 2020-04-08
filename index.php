@@ -21,7 +21,7 @@ try { // On essaie de faire des choses
             listPosts();
         }
         elseif ($_GET['action'] == 'chapitre') {
-            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 5) {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 100) {
                 post();
             }
             else {
@@ -30,10 +30,10 @@ try { // On essaie de faire des choses
             }
         }
 
-        /*elseif ($_GET['action'] == 'addComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 5) {
+        elseif ($_GET['action'] == 'addComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 100) {
                 if (!empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_SESSION['pseudoconnect'], $_POST['comment']);
+                    addComment($_GET['id'], $_SESSION['idconnect'], $_POST['comment']);
                 }
                 else {
                     // Autre exception
@@ -46,7 +46,7 @@ try { // On essaie de faire des choses
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
 
-        }*/
+        }
     }
     else {
         home();
