@@ -22,6 +22,7 @@ try { // On essaie de faire des choses
         }
         elseif ($_GET['action'] == 'chapitre') {
             if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 100) {
+                $_GET['id'] = (int)$_GET['id'];
                 post();
             }
             else {
@@ -32,6 +33,7 @@ try { // On essaie de faire des choses
 
         elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 100) {
+                $_GET['id'] = (int)$_GET['id'];
                 if (!empty($_POST['comment'])) {
                     addComment($_GET['id'], $_SESSION['idconnect'], $_POST['comment']);
                 }
@@ -39,6 +41,18 @@ try { // On essaie de faire des choses
                     // Autre exception
                     throw new Exception('Tous les champs ne sont pas remplis !');
                 }
+            }
+        
+            else {
+                // Autre exception
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+
+        }
+        elseif ($_GET['action'] == 'flagComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 100) {
+                $_GET['id'] = (int)$_GET['id'];
+                flag($_GET['id']);
             }
         
             else {

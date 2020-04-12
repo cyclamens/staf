@@ -30,7 +30,13 @@ while ($comment = $comments->fetch())
     {
 ?>      
         <div id="postcomment"><strong><?= $comment['author']?></strong>  : 
-        <?= nl2br(htmlspecialchars($comment['content'])) ?>, le <?= $comment['comment_date_fr'] ?><?php if(isset($_SESSION['pseudoconnect'])): ?><a href="" id="signal"> Signaler le commentaire</a><?php else:?><?php endif; ?>
+        <?= nl2br(htmlspecialchars($comment['content'])) ?>, le <?= $comment['comment_date_fr'] ?>
+        <?php if(isset($_SESSION['pseudoconnect'])): ?><a href="index.php?action=flagComment&amp;id=<?= $comment['comment_id']?>&amp;post_id=<?=$_GET['id'] ?>" id='signal'> <?php if($comment['reported']==1){
+            echo "Commentaire signalé";
+        }?><?php if($comment['reported']==0){echo"<span style=color:#5A53F4>Signaler le commentaire</span>";}?></a>
+        
+        <?php else:?>
+        <?php endif; ?>
         </div>
 <?php
     }

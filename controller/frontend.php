@@ -154,6 +154,21 @@ function addComment($postId, $author, $comment)
         header('Location: index.php?action=chapitre&id=' . $_GET['id']);
     }
 }
+function flag($commentId)
+{
+    $commentManager = new CommentManager();
+    $affectedFlag = $commentManager->flagComment($commentId);
+    if ($affectedFlag) {
+         header('Location: index.php?action=chapitre&id=' . $_GET['post_id']);
+   
+    }
+    else{
+        throw new Exception("commentaire non signalé !");
+        
+    }
+       
+    
+}
 
 function home()
 {
