@@ -19,4 +19,26 @@ class PostManager extends Manager
 
         return $post;
     }
+
+
+    public function supprimPost($postId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM posts WHERE post_id = ?');
+        $req->execute(array($postId));
+        $post = $req->fetch();
+
+        return $post;
+    }
+
+    public function editPost($titre_chap ,$content_chap,$postId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE posts SET title = ?, content = ? WHERE post_id = ?');
+        $req->execute(array($titre_chap, $content_chap, $postId));
+        $post = $req->fetch();
+
+        return $post;
+    }
+
 }

@@ -6,6 +6,8 @@ require_once('model/CommentManager.php');
 require_once('model/inscriptionManager.php');
 require_once('model/connexionManager.php');
 require_once('model/editpostManager.php');
+require_once('model/AdminManager.php');
+
 function inscription()
 {
     $inscriptionOk = new InscriptionManager();
@@ -122,6 +124,45 @@ function redaction()
     require('view/frontend/editpost.php');
 }
 
+function supprimChapter($postId)
+{
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+    $posts = $postManager->getPosts();
+    $comments = $commentManager->Comments();
+    $supChap = $postManager->supprimPost($postId);
+   header("Location: index.php?action=administration");
+}
+
+function editChapter($postId)
+{
+    $postManager = new PostManager();
+    $editChap = $postManager->getPost($postId);
+    
+   require('view/frontend/modifpost.php');
+}
+
+function updateChapter($postId)
+{
+    $postManager = new PostManager();
+    $titre_chap = htmlspecialchars($_POST['article_title']);
+    $content_chap = htmlspecialchars($_POST['article_content']);
+    $postId = $_GET['id'];
+    $postManager->editPost($titre_chap ,$content_chap ,$postId);
+    throw new Exception("Votre article a bien été modifié !");
+    
+}
+
+function admin()
+{
+    $postManager = new PostManager(); // Création d'un objet
+    $posts = $postManager->getPosts();
+    $commentManager = new CommentManager();
+    $comments = $commentManager->Comments();
+    require('view/frontend/admin.php');
+}
+ 
+
 function listPosts()
 {
     $postManager = new PostManager(); // Création d'un objet
@@ -167,6 +208,36 @@ function flag($commentId)
         
     }
        
+    
+}
+
+function untag($commentId)
+{
+    $postManager = new PostManager(); // Création d'un objet
+    $posts = $postManager->getPosts();
+    $commentManager = new CommentManager();
+    $comments = $commentManager->Comments();
+    $affecteduntag = $commentManager->untagComment($commentId);
+    if ($affecteduntag) {
+         header('Location: index.php?action=administration');
+   
+    }
+    else{
+        throw new Exception("commentaire signalé !");
+        
+    }
+       
+    
+}
+
+function deleteComment($commentId)
+{
+    $postManager = new PostManager(); // Création d'un objet
+    $posts = $postManager->getPosts();
+    $commentManager = new CommentManager();
+    $comments = $commentManager->Comments();
+    $affectedComment = $commentManager->supprimComment($commentId);
+    header('Location: index.php?action=administration');
     
 }
 

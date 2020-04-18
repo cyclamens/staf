@@ -5,7 +5,6 @@ require('controller/frontend.php');
 try { // On essaie de faire des choses
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'inscription') {
-            
             inscription();
         }
         elseif ($_GET['action'] == 'connexion') {
@@ -61,6 +60,75 @@ try { // On essaie de faire des choses
             }
 
         }
+
+        elseif ($_GET['action'] == 'supprimeComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 100) {
+                $_GET['id'] = (int)$_GET['id'];
+                deleteComment($_GET['id']);
+            }
+        
+            else {
+                // Autre exception
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+
+        }
+
+        elseif ($_GET['action'] == 'designal') {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 100) {
+                $_GET['id'] = (int)$_GET['id'];
+                untag($_GET['id']);
+            }
+        
+            else {
+                // Autre exception
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+
+        }
+
+        elseif ($_GET['action'] == 'administration') {
+            admin();
+
+        }
+        elseif ($_GET['action'] == 'supprimeChapitre') {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 100) {
+                $_GET['id'] = (int)$_GET['id'];
+                supprimChapter($_GET['id']);
+            }
+        
+            else {
+                // Autre exception
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+
+        }
+        
+        elseif ($_GET['action'] == 'modifChapitre') {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 100) {
+                $_GET['id'] = (int)$_GET['id'];
+                editChapter($_GET['id']);
+            }
+        
+            else {
+                // Autre exception
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+
+        }
+elseif ($_GET['action'] == 'savepost') {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['id'] < 100) {
+                $_GET['id'] = (int)$_GET['id'];
+                updateChapter($_GET['id']);
+            }
+        
+            else {
+                // Autre exception
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+
+        }
+
     }
     else {
         home();

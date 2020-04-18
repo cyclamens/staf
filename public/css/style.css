@@ -6,7 +6,7 @@ body
 }
 footer
 {
-    height: auto;
+    height: 100%;
     width: 100%;
     background: #34495e;
     padding: 10px;
@@ -39,7 +39,12 @@ h2 em
 {
     font-size: 20px;
 }
-
+#admin
+{
+    width: 100%;
+    height: 550px;
+    margin-top: 20px;
+}
 #news p
 {
     border: 2px solid #434348;
@@ -198,12 +203,15 @@ a
     width: 100%;
     height: 73vh;
 }
-#mytextarea
+.tinymce
 {
     width: 100%;
     height: 420px;
 }
-
+.supprim
+{
+    color: red;
+}
 
 
 
@@ -239,6 +247,17 @@ h2 em
 h3
 {
     text-align: center;
+}
+.supprim
+{
+    background: red;
+    border: 2px solid red;
+}
+#admin
+{
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
 }
 #formcomment
 {

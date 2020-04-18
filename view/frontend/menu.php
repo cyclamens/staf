@@ -10,7 +10,10 @@
                 <?php if(isset($_SESSION['pseudoconnect'])): ?>
                      <label for="chk" id="hide-menu-btn">
                         <i class="fas fa-times"></i>
-                      </label>                        
+                      </label>
+                <?php if($_SESSION['adminconnect']==1)
+                    echo'<a href="index.php?action=administration">administrateur</a>';  
+                 ?>                             
                     <a href="index.php?action=deconnexion">Déconnexion</a>
                 <?php else:?>
                     <a href="index.php?action=inscription">Inscription</a>
