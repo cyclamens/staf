@@ -6,9 +6,9 @@
 	<?php if(isset($_SESSION['adminconnect']) && ($_SESSION['adminconnect'] == 1)): ?>
 	<form action="" method="post">
 		
-		<input type="text" name="article_title" placeholder="Titre"><br>
+		<input type="text" name="article_title" placeholder="Titre">
 		<textarea name="article_content" placeholder="Contenu du chapitre" class="tinymce">
-		</textarea><br>
+		</textarea>
 		<input type="submit" value="Envoyer l'article" />
 		
 	</form>

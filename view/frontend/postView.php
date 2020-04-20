@@ -4,12 +4,12 @@
   
         <div id="news">
             <h2>
-                <?= htmlspecialchars($post['title']) ?>
+                <?= $post['title'] ?>
                 <em>le <?= $post['creation_date_fr'] ?></em>
             </h2>
             
             <p>
-                <?= nl2br(htmlspecialchars($post['content'])) ?>
+                <?= nl2br($post['content']) ?>
             </p>
         </div>
 
@@ -23,14 +23,14 @@
         </form>
     </div>
 <?php else:?>
-<?php  echo '<strong style=\"color:red; background-color: #B3C6C7; width: 100%; heigth:100%; padding:5px;\">Vous devez <a href="index.php?action=connexion" title="connectez-vous">être connecté</a> pour poster un commentaire !</strong>'; ?> 
+<?php  echo '<strong style="color:blue; font-size:20px; background-color: #B3C6C7; width: 100%; heigth:100%; padding:5px;">Vous devez <a href="index.php?action=connexion" title="connectez-vous"><span style="color:red;">être connecté</span></a> pour poster un commentaire !</strong>'; ?> 
 <?php endif; ?>
 <?php
 while ($comment = $comments->fetch())
-    {
+{
 ?>      
         <div id="postcomment"><strong><?= $comment['author']?></strong>  : 
-        <?= nl2br(htmlspecialchars($comment['content'])) ?>, le <?= $comment['comment_date_fr'] ?>
+        <?= nl2br($comment['content']) ?>, le <?= $comment['comment_date_fr'] ?>
         <?php if(isset($_SESSION['pseudoconnect'])): ?>
             <a href="index.php?action=flagComment&amp;id=<?= $comment['comment_id']?>&amp;post_id=<?=$_GET['id'] ?>" id='signal'> 
         <?php if($comment['reported']==1){
@@ -40,7 +40,7 @@ while ($comment = $comments->fetch())
         <?php endif; ?>
         </div>
 <?php
-    }
+}
 $comments->closeCursor();
 ?>
 

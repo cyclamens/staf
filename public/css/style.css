@@ -12,6 +12,7 @@ footer
     padding: 10px;
     margin-top: 10px;
     color: #fff;
+    text-align: center;
 }
 h1,  h2
 {
@@ -26,6 +27,12 @@ p
 {
     text-align: center;
 }
+.fa-facebook, .fa-twitter-square
+{
+    color: white;
+}
+
+
 #news h2
 {
     background-color:#434348;

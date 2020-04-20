@@ -31,7 +31,7 @@ class PostManager extends Manager
         return $post;
     }
 
-    public function editPost($titre_chap ,$content_chap,$postId)
+    public function editPost($titre_chap ,$content_chap, $postId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE posts SET title = ?, content = ? WHERE post_id = ?');

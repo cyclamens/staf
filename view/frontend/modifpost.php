@@ -1,4 +1,4 @@
-<?php $title = 'Rédaction chapitres'; ?>
+<?php $title = 'Modification chapitre'; ?>
 
 <?php ob_start(); ?>
 
@@ -8,7 +8,7 @@
 		
 		<input type="text" name="article_title" placeholder="Titre" value="<?=$editChap['title']?>"><br>
 		<textarea name="article_content" placeholder="Contenu du chapitre" class="tinymce">
-			<?= $editChap['content']?>
+			<?= nl2br($editChap['content']) ?>
 		</textarea><br>
 		<input type="submit" value="Envoyer l'article" />
 		

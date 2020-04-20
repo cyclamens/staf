@@ -7,7 +7,7 @@ require_once('model/inscriptionManager.php');
 require_once('model/connexionManager.php');
 require_once('model/editpostManager.php');
 require_once('model/AdminManager.php');
-
+//permet de s'inscrire
 function inscription()
 {
     $inscriptionOk = new InscriptionManager();
@@ -59,7 +59,7 @@ function inscription()
     
     require('view/frontend/inscription.php');
 }
-
+//permet de se connecter
 function login()
 {
     $connexionOk = new ConnexionManager();
@@ -78,7 +78,7 @@ function login()
                     $_SESSION['adminconnect'] = $userinfo['admin'];
                     header("Location:index.php?action=listPosts");
                 }else{
-                    throw new Exception("Mauvais mot de pass");  
+                    throw new Exception("Mauvais mot de passe");  
                 }
                     
             }else {
@@ -92,7 +92,7 @@ function login()
 
     require('view/frontend/connexion.php');
 }
-
+//permer de se déconnecter
 function deconnect()
 {
     session_start();
@@ -100,15 +100,15 @@ function deconnect()
     session_destroy();
     header("Location: index.php?action=connexion");
 }
-
+//permet la rédaction des chapitres
 function redaction()
 {
     $redactionOk = new EditPostManager();
     if(isset($_POST['article_title'], $_POST['article_content'])) {
         if(!empty($_POST['article_title']) AND !empty($_POST['article_content'])) {
       
-            $article_title = htmlspecialchars($_POST['article_title']);
-            $article_content = htmlspecialchars($_POST['article_content']);
+            $article_title = $_POST['article_title'];
+            $article_content = $_POST['article_content'];
             $editOk = $redactionOk->edit($article_title, $article_content);
             if ($editOk) {
                 throw new Exception("Votre article a bien été posté");  
@@ -123,17 +123,17 @@ function redaction()
 
     require('view/frontend/editpost.php');
 }
-
+//supprime un chapitre
 function supprimChapter($postId)
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
     $posts = $postManager->getPosts();
-    $comments = $commentManager->Comments();
+    $comments = $commentManager->adminFlagComments();
     $supChap = $postManager->supprimPost($postId);
    header("Location: index.php?action=administration");
 }
-
+//modification d'un chapitre
 function editChapter($postId)
 {
     $postManager = new PostManager();
@@ -141,28 +141,28 @@ function editChapter($postId)
     
    require('view/frontend/modifpost.php');
 }
-
+//modification et envoi du chapitre dans la BDD
 function updateChapter($postId)
 {
     $postManager = new PostManager();
-    $titre_chap = htmlspecialchars($_POST['article_title']);
-    $content_chap = htmlspecialchars($_POST['article_content']);
+    $titre_chap = $_POST['article_title'];
+    $content_chap = $_POST['article_content'];
     $postId = $_GET['id'];
     $postManager->editPost($titre_chap ,$content_chap ,$postId);
     throw new Exception("Votre article a bien été modifié !");
     
 }
-
+//page d'administration
 function admin()
 {
     $postManager = new PostManager(); // Création d'un objet
     $posts = $postManager->getPosts();
     $commentManager = new CommentManager();
-    $comments = $commentManager->Comments();
+    $flagComments = $commentManager->adminFlagComments();
     require('view/frontend/admin.php');
 }
  
-
+//liste les chapitres
 function listPosts()
 {
     $postManager = new PostManager(); // Création d'un objet
@@ -170,7 +170,7 @@ function listPosts()
 
     require('view/frontend/listPostsView.php');
 }
-
+//affiche un chapitre
 function post()
 {
     $postManager = new PostManager();
@@ -181,7 +181,7 @@ function post()
 
     require('view/frontend/postView.php');
 }
-
+//ajout de commentaire
 function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager(); // Création d'un objet
@@ -195,6 +195,7 @@ function addComment($postId, $author, $comment)
         header('Location: index.php?action=chapitre&id=' . $_GET['id']);
     }
 }
+//signalement d'un commentaire
 function flag($commentId)
 {
     $commentManager = new CommentManager();
@@ -207,16 +208,15 @@ function flag($commentId)
         throw new Exception("commentaire non signalé !");
         
     }
-       
-    
+          
 }
-
+//désignalement d'un commentaire
 function untag($commentId)
 {
     $postManager = new PostManager(); // Création d'un objet
     $posts = $postManager->getPosts();
     $commentManager = new CommentManager();
-    $comments = $commentManager->Comments();
+    $flagComments = $commentManager->adminFlagComments();
     $affecteduntag = $commentManager->untagComment($commentId);
     if ($affecteduntag) {
          header('Location: index.php?action=administration');
@@ -226,21 +226,20 @@ function untag($commentId)
         throw new Exception("commentaire signalé !");
         
     }
-       
-    
+          
 }
-
+//supprime un commentaire
 function deleteComment($commentId)
 {
     $postManager = new PostManager(); // Création d'un objet
     $posts = $postManager->getPosts();
     $commentManager = new CommentManager();
-    $comments = $commentManager->Comments();
+    $deleteComments = $commentManager->adminFlagComments();
     $affectedComment = $commentManager->supprimComment($commentId);
     header('Location: index.php?action=administration');
     
 }
-
+//accueil
 function home()
 {
     require('view/frontend/accueil.php');
