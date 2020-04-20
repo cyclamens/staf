@@ -1,5 +1,7 @@
 <?php
+//chargement de la class Manager
 require_once("model/Manager.php");
+
 class InscriptionManager extends Manager
 {
    public function reqMail($mail)

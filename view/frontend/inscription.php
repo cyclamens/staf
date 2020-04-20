@@ -3,7 +3,7 @@
 
 <div id="inscription" align="center">
 	<h2>Inscription</h2>
-
+	<!--formulaire d'inscription -->
 	<form method="POST" action="">
 		<div class="form-group">
 			<label for="pseudo">Pseudo :

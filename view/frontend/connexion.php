@@ -2,6 +2,7 @@
 <?php ob_start(); ?>
 <div id="connexion" align="center">
 	<h2>Connexion</h2>
+	<!--formulaire de connexion -->
 	<form method="POST" action="">
 		<div class="form-group">
 			<label for="pseudo">Pseudo :

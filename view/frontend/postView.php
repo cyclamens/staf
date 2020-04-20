@@ -1,18 +1,11 @@
 <?php ob_start(); ?>
        
-        <p><a href="index.php?action=listPosts">Retour à la liste des chapitres</a></p>
+<p><a href="index.php?action=listPosts">Retour à la liste des chapitres</a></p>
   
-        <div id="news">
-            <h2>
-                <?= $post['title'] ?>
-                <em>le <?= $post['creation_date_fr'] ?></em>
-            </h2>
-            
-            <p>
-                <?= nl2br($post['content']) ?>
-            </p>
-        </div>
-
+<div id="news">
+    <h2><?= $post['title'] ?><em>le <?= $post['creation_date_fr'] ?></em></h2>
+    <p><?= nl2br($post['content']) ?></p>
+</div>
 
 <h3>Commentaires</h3>
 <?php if(isset($_SESSION['pseudoconnect'])): ?>
@@ -29,16 +22,18 @@
 while ($comment = $comments->fetch())
 {
 ?>      
-        <div id="postcomment"><strong><?= $comment['author']?></strong>  : 
-        <?= nl2br($comment['content']) ?>, le <?= $comment['comment_date_fr'] ?>
+    <div id="postcomment"><strong><?= $comment['author']?></strong>  : <?= nl2br($comment['content']) ?>, le <?= $comment['comment_date_fr'] ?>
         <?php if(isset($_SESSION['pseudoconnect'])): ?>
             <a href="index.php?action=flagComment&amp;id=<?= $comment['comment_id']?>&amp;post_id=<?=$_GET['id'] ?>" id='signal'> 
         <?php if($comment['reported']==1){
             echo "Commentaire signalé";
-        }?><?php if($comment['reported']==0){echo"<span style=color:#5A53F4>Signaler le commentaire</span>";}?></a>
+        }?>
+        <?php if($comment['reported']==0){
+            echo"<span style=color:#5A53F4>Signaler le commentaire</span>";
+        }?></a>
         <?php else:?>
         <?php endif; ?>
-        </div>
+    </div>
 <?php
 }
 $comments->closeCursor();

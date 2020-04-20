@@ -1,4 +1,5 @@
 <?php
+//chargement de la class Manager
 require_once("model/Manager.php");
 class ConnexionManager extends Manager
 {
