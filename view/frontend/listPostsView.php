@@ -8,8 +8,8 @@ while ($data = $posts->fetch())//affiche tous les chapitres
 ?>
     <div id="news">
         <h2>
-            <?= $data['title'] ?>
-            <em>le <?= $data['creation_date_fr'] ?></em>
+            <?= $data['title'] ?> <br>
+            <em> le <?= $data['creation_date_fr'] ?></em>
         </h2>
         <p>
             <?= nl2br($data['content']) ?>
