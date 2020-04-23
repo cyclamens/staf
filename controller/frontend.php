@@ -10,7 +10,7 @@ require_once('model/AdminManager.php');
 //permet de s'inscrire
 function inscription()
 {
-    $inscriptionOk = new InscriptionManager();
+    $inscriptionOk = new \OpenClassrooms\Blog\Model\InscriptionManager();
     if(isset($_POST['forminscription'])) {      
         if(!empty($_POST['pseudo']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2'])) {
             $pseudo = htmlspecialchars($_POST['pseudo']);
@@ -62,7 +62,7 @@ function inscription()
 //permet de se connecter
 function login()
 {
-    $connexionOk = new ConnexionManager();
+    $connexionOk = new \OpenClassrooms\Blog\Model\ConnexionManager();
 
     if(isset($_POST['formconnexion'])) {
         $pseudoconnect = htmlspecialchars($_POST['pseudoconnect']);
@@ -102,7 +102,7 @@ function deconnect()
 //permet la rédaction des chapitres
 function redaction()
 {
-    $redactionOk = new EditPostManager();
+    $redactionOk = new \OpenClassrooms\Blog\Model\EditPostManager();
     if(isset($_POST['article_title'], $_POST['article_content'])) {
         if(!empty($_POST['article_title']) AND !empty($_POST['article_content'])) {
       
@@ -125,8 +125,8 @@ function redaction()
 //supprime un chapitre
 function supprimChapter($postId)
 {
-    $postManager = new PostManager();
-    $commentManager = new CommentManager();
+    $postManager = new \OpenClassrooms\Blog\Model\PostManager();
+    $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
     $posts = $postManager->getPosts();
     $comments = $commentManager->adminFlagComments();
     $supChap = $postManager->supprimPost($postId);
@@ -135,7 +135,7 @@ function supprimChapter($postId)
 //modification d'un chapitre
 function editChapter($postId)
 {
-    $postManager = new PostManager();
+    $postManager = new \OpenClassrooms\Blog\Model\PostManager();
     $editChap = $postManager->getPost($postId);
     
    require('view/frontend/modifpost.php');
@@ -143,7 +143,7 @@ function editChapter($postId)
 //modification et envoi du chapitre dans la BDD
 function updateChapter($postId)
 {
-    $postManager = new PostManager();
+    $postManager = new \OpenClassrooms\Blog\Model\PostManager();
     $titre_chap = $_POST['article_title'];
     $content_chap = $_POST['article_content'];
     $postId = $_GET['id'];
@@ -154,9 +154,9 @@ function updateChapter($postId)
 //page d'administration
 function admin()
 {
-    $postManager = new PostManager(); // Création d'un objet
+    $postManager = new \OpenClassrooms\Blog\Model\PostManager(); // Création d'un objet
     $posts = $postManager->getPosts();
-    $commentManager = new CommentManager();
+    $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
     $flagComments = $commentManager->adminFlagComments();
     require('view/frontend/admin.php');
 }
@@ -164,7 +164,7 @@ function admin()
 //liste les chapitres
 function listPosts()
 {
-    $postManager = new PostManager(); // Création d'un objet
+    $postManager = new \OpenClassrooms\Blog\Model\PostManager(); // Création d'un objet
     $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
     require('view/frontend/listPostsView.php');
@@ -172,8 +172,8 @@ function listPosts()
 //affiche un chapitre
 function post()
 {
-    $postManager = new PostManager();
-    $commentManager = new CommentManager();
+    $postManager = new \OpenClassrooms\Blog\Model\PostManager();
+    $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
 
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
@@ -183,7 +183,7 @@ function post()
 //ajout de commentaire
 function addComment($postId, $author, $comment)
 {
-    $commentManager = new CommentManager(); // Création d'un objet
+    $commentManager = new \OpenClassrooms\Blog\Model\CommentManager(); // Création d'un objet
 
     $affectedLines = $commentManager->postComment($_GET['id'], $_SESSION['idconnect'], $comment);
     
@@ -197,7 +197,7 @@ function addComment($postId, $author, $comment)
 //signalement d'un commentaire
 function flag($commentId)
 {
-    $commentManager = new CommentManager();
+    $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
     $affectedFlag = $commentManager->flagComment($commentId);
     if ($affectedFlag) {
          header('Location: index.php?action=chapitre&id=' . $_GET['post_id']);
@@ -212,9 +212,9 @@ function flag($commentId)
 //désignalement d'un commentaire
 function untag($commentId)
 {
-    $postManager = new PostManager(); // Création d'un objet
+    $postManager = new \OpenClassrooms\Blog\Model\PostManager(); // Création d'un objet
     $posts = $postManager->getPosts();
-    $commentManager = new CommentManager();
+    $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
     $flagComments = $commentManager->adminFlagComments();
     $affecteduntag = $commentManager->untagComment($commentId);
     if ($affecteduntag) {
@@ -230,9 +230,9 @@ function untag($commentId)
 //supprime un commentaire
 function deleteComment($commentId)
 {
-    $postManager = new PostManager(); // Création d'un objet
+    $postManager = new \OpenClassrooms\Blog\Model\PostManager(); // Création d'un objet
     $posts = $postManager->getPosts();
-    $commentManager = new CommentManager();
+    $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
     $deleteComments = $commentManager->adminFlagComments();
     $affectedComment = $commentManager->supprimComment($commentId);
     header('Location: index.php?action=administration');

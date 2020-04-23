@@ -1,4 +1,5 @@
 <?php
+namespace OpenClassrooms\Blog\Model;
 //chargementde la class Manager
 require_once("model/Manager.php");
 

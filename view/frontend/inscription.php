@@ -5,7 +5,8 @@
 	<h2>Inscription</h2>
 	<!--formulaire d'inscription -->
 	<form method="POST" action="">
-		<div class="form-group">
+		
+		<div class="form-group" >
 			<label for="pseudo">Pseudo :
 				<input type="text" placeholder="Votre pseudo" id="pseudo" name="pseudo" class="form-control" value="<?php if(isset($pseudo)) { echo $pseudo; } ?>" required />
 			</label>	
@@ -32,6 +33,7 @@
 		</div>
 		<button type="submit" name="forminscription" class="btn btn-primary">S'inscrire</button>
 		<button><a href="index.php?action=connexion">Se connecter</a></button>
+	
 	</form>
 </div>
 
