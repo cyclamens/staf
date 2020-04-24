@@ -12,9 +12,9 @@ while ($data = $posts->fetch())//affiche tous les chapitres
             <em> le <?= $data['creation_date_fr'] ?></em>
         </h2>
         <p>
-            <?= nl2br($data['content']) ?>
+            <?= nl2br(substr($data['content'], 0, 743)) ?>...
             <br /><br>
-            <a href="index.php?action=chapitre&amp;id=<?= $data['post_id'] ?>" class="btn btn-primary"><em>Commentaires</em></a>
+            <a href="index.php?action=chapitre&amp;id=<?= $data['post_id'] ?>" class="btn btn-primary"><em>Lire la suite</em></a>
         </p>
     </div>
 <?php
