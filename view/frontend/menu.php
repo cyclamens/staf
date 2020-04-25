@@ -1,6 +1,6 @@
 <!--le menu du site -->
 <div id="header">
-  <h2 id="logo">jean forteroche</h2>
+  <h2 id="logo"><a href="index.php">jean forteroche</a></h2>
   <input type="checkbox" id="chk">
     <label for="chk" id="show-menu-btn">
     	<i class="fas fa-bars"></i>

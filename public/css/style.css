@@ -153,8 +153,6 @@ a
     border-radius: 50px;
     color: blue;
     opacity: 0.8;
-    margin-left: ;
-    margin-right: ;
 }
 
 #header
@@ -171,6 +169,18 @@ a
     line-height: 50px;
     float: left;
     text-transform: uppercase;
+}
+
+#logo a
+{
+    color: white;
+}
+
+#logo a:hover
+{
+    text-decoration: none;
+    color: rgb(50, 100, 255);
+    transition: 0.5s;
 }
 
 #menu
