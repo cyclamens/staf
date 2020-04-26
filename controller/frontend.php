@@ -120,7 +120,7 @@ function redaction()
         }
     }
 
-    require('view/frontend/editpost.php');
+    require('view/backend/editpost.php');
 }
 //supprime un chapitre
 function supprimChapter($postId)
@@ -138,7 +138,7 @@ function editChapter($postId)
     $postManager = new \OpenClassrooms\Blog\Model\PostManager();
     $editChap = $postManager->getPost($postId);
     
-   require('view/frontend/modifpost.php');
+   require('view/backend/modifpost.php');
 }
 //modification et envoi du chapitre dans la BDD
 function updateChapter($postId)
@@ -158,7 +158,7 @@ function admin()
     $posts = $postManager->getPosts();
     $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
     $flagComments = $commentManager->adminFlagComments();
-    require('view/frontend/admin.php');
+    require('view/backend/admin.php');
 }
  
 //liste les chapitres

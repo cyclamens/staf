@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title><?= $title ?></title>
     <!--lien avec fichier css -->
-    <link rel="stylesheet" href="public/css/style" /> 
+    <link rel="stylesheet" href="public/css/style.css" /> 
     <!--responsive meta tag-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="description" content="Envie de payer un aller simple pour l'Alaska, à travers ce roman, vous allez vous y retrouver et suivre ce coin paradisiaque.">
